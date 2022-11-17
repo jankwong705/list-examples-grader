@@ -4,14 +4,16 @@ set -e
 
 rm -rf student-submission
 
+mkdir student-submission
+
 git clone $1 student-submission
 
 cp TestListExamples.java student-submission
 cd student-submission
 
-CPATH=.:list-examples-grader/lib/hamcrest-core-1.3.jar:list-examples-grader/lib/junit-4.13.2.jar
+CPATH=.:../lib/hamcrest-core-1.3.jar:../lib/junit-4.13.2.jar
 
-if [[ -f ListExamples.java ]]
+if [[ -f ListExamples.java ]];
 then 
     echo "File Found!"
 else
@@ -31,7 +33,7 @@ else
     exit
 fi
 
-java -cp $CPATH TestListExamples 
+java -cp $CPATH org.junit.runner.JUnitCore TestListExamples 
 
 if [[ $? -eq 0 ]]
 then
