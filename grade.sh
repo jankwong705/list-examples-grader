@@ -33,13 +33,16 @@ else
     exit
 fi
 
-java -cp $CPATH org.junit.runner.JUnitCore TestListExamples 
+java -cp $CPATH org.junit.runner.JUnitCore TestListExamples > results.txt 2> error.txt
 
 if [[ $? -eq 0 ]]
 then
     echo "Test Passed!"
+    cat results.txt
+    exit
 else
     echo "Tests Error!"
+    cat error.txt
     exit
 fi
 
