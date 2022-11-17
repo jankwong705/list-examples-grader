@@ -55,4 +55,29 @@ public class TestListExamples {
       assertEquals(expected, results);
   }
 
+  @Test
+  public void testMergeSame() {
+    List<String> s1 = new ArrayList<>();
+    List<String> s2 = new ArrayList<>();
+    s1.add("apple");
+    s1.add("banana");
+    s1.add("chaisma");
+    s1.add("dormitory");
+    s2.add("apple");
+    s2.add("banana");
+    s2.add("chaisma");
+    s2.add("dormitory");
+    List<String> expected = new ArrayList<>();
+    expected.add("apple");
+    expected.add("apple");
+    expected.add("banana");
+    expected.add("banana");
+    expected.add("chaisma");
+    expected.add("chaisma");
+    expected.add("dormitory");
+    expected.add("dormitory");
+    List<String> results = ListExamples.merge(s1, s2);
+    assertEquals(expected, results);
+  }
+
 }

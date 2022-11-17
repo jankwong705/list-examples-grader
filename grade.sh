@@ -18,7 +18,7 @@ then
     echo "File Found!"
 else
     echo "File Not Found!"
-    exit
+    exit 1
 fi
 
 set +e
@@ -30,10 +30,10 @@ then
     echo "Successful Compile!"
 else
     echo "Compile Error!"
-    exit
+    exit 2
 fi
 
-java -cp $CPATH org.junit.runner.JUnitCore TestListExamples > results.txt 2> error.txt
+java -cp $CPATH org.junit.runner.JUnitCore TestListExamples > results.txt 
 
 if [[ $? -eq 0 ]]
 then
@@ -42,8 +42,8 @@ then
     exit
 else
     echo "Tests Error!"
-    cat error.txt
-    exit
+    cat results.txt
+    exit 3
 fi
 
 
