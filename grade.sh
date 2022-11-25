@@ -41,13 +41,14 @@ java -cp $CPATH org.junit.runner.JUnitCore TestListExamples > results.txt
 
 if [[ $? -eq 0 ]]
 then
-    echo "Test Passed!"
+    echo "All Tests Passed!"
     echo "Grade: 5/5"
-    cat results.txt
     exit
 else
+    FAILURE=$(grep "There " results.txt | grep -Eo "[1-3]")
+    PASSED="$((3 - $FAILURE))"
     echo "Tests Error!"
-    echo "Grade: 2/5"
+    echo "Grade: $PASSED/5"
     cat results.txt
     exit 3
 fi
